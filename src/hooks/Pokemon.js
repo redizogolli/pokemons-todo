@@ -11,7 +11,6 @@ export const usePokemon = () => {
       pokemons.length > 0 ? Math.max(...pokemons.map(p => p.id)) : 0;
     GetPokemon(maxId + 1).then(res => {
       const pokemon = res.data;
-      console.log(res.data);
       setPokemons([
         ...pokemons,
         {
@@ -25,12 +24,13 @@ export const usePokemon = () => {
   };
 
 
-  const editPokemon = (id, name) => {
+  const editPokemon = (id, name,type) => {
     const newPokemons = pokemons.map(pokemon => {
       if (pokemon.id === id) {
         return {
           ...pokemon,
           name,
+          type,
         };
       }
       return pokemon;

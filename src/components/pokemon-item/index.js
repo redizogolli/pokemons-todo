@@ -12,7 +12,7 @@ import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 import { usePokemon } from '../../hooks/Pokemon';
 
 
-const PokemonItem = ({ pokemon }) => {
+const PokemonItem = ({ pokemon,editClicked }) => {
   const {removePokemon} = usePokemon();
   const bgColor = useColorModeValue('gray.100', 'gray.700');
   return (
@@ -33,6 +33,7 @@ const PokemonItem = ({ pokemon }) => {
             colorScheme="yellow"
             aria-label="Edit"
             icon={<EditIcon />}
+            onClick={() => editClicked(pokemon)}
           />
           <IconButton
             colorScheme="red"
