@@ -1,40 +1,22 @@
 import React from 'react';
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-} from '@chakra-ui/react';
+import { ChakraProvider, Grid, GridItem, theme } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
+import { PokemonList } from './components';
+import { AppProvider } from './context';
 
 function App() {
   return (
     <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
+      <AppProvider>
+        <Grid w="full" h="full" templateRows={'auto 1fr'}>
+          <GridItem rowStart={1} display="flex" justifyContent={'end'}>
+            <ColorModeSwitcher />
+          </GridItem>
+          <GridItem rowStart={2} display="flex" justifyContent={'center'}>
+            <PokemonList />
+          </GridItem>
         </Grid>
-      </Box>
+      </AppProvider>
     </ChakraProvider>
   );
 }
